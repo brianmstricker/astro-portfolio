@@ -1,10 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import me from "../assets/images/me-small.jpg";
-import HTML from "../assets/images/HTML.svg";
-import REACT from "../assets/images/React.svg";
-import JAVASCRIPT from "../assets/images/Javascript.svg";
-import CSS from "../assets/images/CSS.svg";
+import HTML from "../assets/images/HTML.png";
+import REACT from "../assets/images/react.png";
+import JAVASCRIPT from "../assets/images/Javascript.png";
+import CSS from "../assets/images/CSS.png";
 import TAILWIND from "../assets/images/tailwind.png";
 import TYPESCRIPT from "../assets/images/typescript.png";
 import VUE from "../assets/images/vue.png";
@@ -35,6 +35,8 @@ const images = [
      class="object-cover rounded-full w-28 h-28 sm:w-[168px] sm:h-[168px]"
      src={me}
      alt="me"
+     width={168}
+     height={168}
     />
     <h1 class="text-2xl sm:text-4xl mt-2">Brian Stricker</h1>
     <p class="opacity-80 text-sm sm:text-base">Full stack developer</p>
@@ -56,6 +58,8 @@ const images = [
           class="object-contain mx-auto w-full h-full"
           src={image.name}
           alt={image.text}
+          width={80}
+          height={80}
          />
         </div>
         <p class="text-center text-xs lg:text-sm mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300 lg:opacity-100">
@@ -66,15 +70,10 @@ const images = [
      }
     </div>
    </div>
-   <!-- <Link
-    to="/home"
-    class="mt-2 sm:mt-4 lg:mt-8 static sm:absolute bottom-2 "
-   >
+   <a href="/home" class="mt-2 sm:mt-4 lg:mt-8 static sm:absolute bottom-2">
     view full site
     <span class="relative bottom-[2px] -right-2">&rarr;</span>
-   </Link> -->
+   </a>
   </div>
  </main>
 </Layout>
-
-<style></style>
