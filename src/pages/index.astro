@@ -1,79 +1,89 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import me from "../assets/images/me-small.jpg";
-import HTML from "../assets/images/HTML.png";
-import REACT from "../assets/images/react.png";
-import JAVASCRIPT from "../assets/images/Javascript.png";
-import CSS from "../assets/images/CSS.png";
-import TAILWIND from "../assets/images/tailwind.png";
-import TYPESCRIPT from "../assets/images/typescript.png";
-import VUE from "../assets/images/vue.png";
-import NUXT from "../assets/images/nuxt.png";
 import { Image } from "astro:assets";
 import ContactLinks from "../components/ContactLinks.astro";
+import Skills from "../components/Skills.astro";
+import About from "../components/About.astro";
+import Projects from "../components/Projects.astro";
 
-const images = [
- { name: HTML, style: "shadow-orange-500", text: "HTML" },
- { name: CSS, style: "shadow-blue-600", text: "CSS" },
- { name: JAVASCRIPT, style: "shadow-yellow-400", text: "Javascript" },
- { name: REACT, style: "shadow-cyan-400", text: "React" },
- { name: REACT, style: "shadow-cyan-400", text: "React Native" },
- { name: TAILWIND, style: "shadow-blue-400", text: "Tailwind" },
- { name: TYPESCRIPT, style: "shadow-blue-400", text: "Typescript" },
- { name: VUE, style: "shadow-green-400", text: "Vue" },
- { name: NUXT, style: "shadow-lime-700", text: "Nuxt" },
+const categories = [
+ { name: "skills" },
+ { name: "projects" },
+ { name: "about" },
+ { name: "contact" },
 ];
 ---
 
+<script>
+ const tabTitles = document.querySelectorAll(".tab-titles");
+ tabTitles[0].classList.add("active");
+ const tabContent = document.querySelectorAll(".tab-content");
+ tabContent[0].classList.add("active");
+ tabTitles.forEach((tab, i) => {
+  tab.addEventListener("click", () => {
+   tabTitles.forEach((tab) => {
+    tab.classList.remove("active");
+   });
+   tab.classList.add("active");
+   tabContent.forEach((tab) => {
+    tab.classList.remove("active");
+   });
+   tabContent[i].classList.add("active");
+  });
+ });
+</script>
 <Layout title="Brian Stricker">
- <main>
-  <div
-   class="w-full h-screen flex flex-col items-center justify-center relative overflow-y-hidden"
-  >
-   <div class="flex flex-col items-center justify-center relative">
+ <main class="w-full h-screen flex flex-col items-center justify-center">
+  <div class="flex flex-col">
+   <div class="flex flex-row mx-auto">
     <Image
-     class="object-cover rounded-full w-28 h-28 sm:w-[168px] sm:h-[168px]"
+     class="object-cover rounded-full w-28 h-28 sm:w-[160px] sm:h-[160px]"
      src={me}
      alt="me"
-     width={168}
-     height={168}
+     width={160}
+     height={160}
     />
-    <h1 class="text-2xl sm:text-4xl mt-2">Brian Stricker</h1>
-    <p class="opacity-80 text-sm sm:text-base">Full stack developer</p>
-    <div class="mt-2 flex flex-col items-center">
-     <h2 class="text-center font-bold mb-2 sm:mb-4">contact</h2>
-     <ContactLinks icons={true} index={true} />
-    </div>
-    <h2 class="text-center font-bold mt-4 sm:mt-6 mb-2 sm:mb-4">skills</h2>
-    <div
-     class="grid grid-cols-3 lg:grid-cols-3 gap-x-4 gap-y-2 lg:gap-x-6 lg:gap-y-4 items-center justify-start"
-    >
-     {
-      images.map((image) => (
-       <div class="group">
-        <div
-         class={`bg-main px-4 pt-1 pb-[1px] flex flex-col gap-2 rounded-2xl shadow-md w-[70px] h-[70px] lg:w-[80px] lg:h-[80px] ${image.style}`}
-        >
-         <Image
-          class="object-contain mx-auto w-full h-full"
-          src={image.name}
-          alt={image.text}
-          width={80}
-          height={80}
-         />
-        </div>
-        <p class="text-center text-xs lg:text-sm mt-2 opacity-0 group-hover:opacity-100 transition-all duration-300 lg:opacity-100">
-         {image.text}
-        </p>
-       </div>
-      ))
-     }
+    <div class="flex flex-col justify-center">
+     <div class="ml-4">
+      <h1 class="text-2xl sm:text-4xl mt-2">Brian Stricker</h1>
+      <p class="opacity-80 text-sm sm:text-base text-center">
+       Full stack developer
+      </p>
+     </div>
+     <div class="mt-4 flex flex-col items-center">
+      <ContactLinks icons={true} index={true} />
+     </div>
     </div>
    </div>
-   <a href="/home" class="mt-2 sm:mt-4 lg:mt-8 static sm:absolute bottom-2">
-    view full site
-    <span class="relative bottom-[2px] -right-2">&rarr;</span>
-   </a>
+   <ul class="my-4 sm:mt-6 flex gap-3 sm:gap-6 self-center items-center">
+    {
+     categories.map((c) => (
+      <div class="group">
+       <li class="font-bold cursor-pointer tab-titles">{c.name}</li>
+       <div class="tab-title-underline bg-blue-400 h-[2px] w-0 group-hover:w-full transition-all duration-300" />
+      </div>
+     ))
+    }
+   </ul>
+   {
+    categories.map((c) => (
+     <div class="tab-content hidden">
+      {c.name === "skills" && <Skills />}
+      {c.name === "projects" && <Projects />}
+      {c.name === "about" && <About />}
+      {c.name === "contact" && <p>Contact</p>}
+     </div>
+    ))
+   }
   </div>
  </main>
 </Layout>
+<style>
+ .tab-titles.active + .tab-title-underline {
+  @apply bg-blue-400 h-[2px] w-full transition-all duration-200;
+ }
+ .tab-content.active {
+  @apply block h-[400px] max-w-[600px] mx-auto transition-all duration-200;
+ }
+</style>

@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import HTML from "../assets/images/HTML.png";
+import REACT from "../assets/images/react.png";
+import JAVASCRIPT from "../assets/images/Javascript.png";
+import CSS from "../assets/images/CSS.png";
+import TAILWIND from "../assets/images/tailwind.png";
+import TYPESCRIPT from "../assets/images/typescript.png";
+import VUE from "../assets/images/vue.png";
+import NUXT from "../assets/images/nuxt.png";
+
+const images = [
+ { name: HTML, style: "shadow-orange-500", text: "HTML" },
+ { name: CSS, style: "shadow-blue-600", text: "CSS" },
+ { name: JAVASCRIPT, style: "shadow-yellow-400", text: "Javascript" },
+ { name: REACT, style: "shadow-cyan-400", text: "React" },
+ { name: REACT, style: "shadow-cyan-400", text: "React Native" },
+ { name: TAILWIND, style: "shadow-blue-400", text: "Tailwind" },
+ { name: TYPESCRIPT, style: "shadow-blue-400", text: "Typescript" },
+ { name: VUE, style: "shadow-green-400", text: "Vue" },
+ { name: NUXT, style: "shadow-lime-700", text: "Nuxt" },
+];
+---
+
+<div class="grid grid-cols-3 lg:grid-cols-3 gap-x-6 gap-y-2">
+ {
+  images.map((image) => (
+   <div class="group">
+    <div
+     class={`bg-main py-3 px-4 flex flex-col gap-2 rounded-2xl shadow-md mx-auto w-[70px] h-[70px] sm:w-[80px] sm:h-[80px] ${image.style}`}
+    >
+     <Image
+      class="object-contain mx-auto w-full h-full"
+      src={image.name}
+      alt={image.text}
+      width={50}
+      height={50}
+     />
+    </div>
+    <p class="text-center mx-auto text-xs lg:text-sm mt-2 w-fit">
+     {image.text}
+    </p>
+   </div>
+  ))
+ }
+</div>

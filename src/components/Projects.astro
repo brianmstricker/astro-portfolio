@@ -1,0 +1,79 @@
+---
+import icongen from "../assets/images/icon-generator-project.png";
+import blogimg from "../assets/images/myblog.png";
+import airbnbclone from "../assets/images/airbnb-clone.png";
+import Icon from "astro-icon";
+import { Image } from "astro:assets";
+
+const projects = [
+ {
+  name: "Airbnb Clone",
+  image: airbnbclone,
+  text: "React, Next.js, Tailwind, Prisma, Typescript",
+  site: "https://brian-airbnb-clone.vercel.app//",
+  code: "https://github.com/brianmstricker/airbnb-clone",
+ },
+ {
+  name: "Fullstack Blog",
+  image: blogimg,
+  text: "MERN stack(MongoDB, Express, React, Node)",
+  site: "https://blog.brianstricker.com/",
+  code: "https://github.com/brianmstricker/blog-app",
+ },
+ {
+  name: "Icon Generator",
+  image: icongen,
+  text: "React, T3 Stack(Typescript, Prisma, TRPC)",
+  site: "https://icons.brianstricker.com/",
+  code: "https://github.com/brianmstricker/icon-generator",
+ },
+];
+---
+    <div class="grid sm:grid-cols-2 gap-4 justify-center items-center">
+     {projects.map((project) => (
+      <div class="flex flex-col items-center px-4 sm:px-0 w-[90%] h-[90%] mx-auto sm:w-auto sm:h-auto">
+       <h2 class="pb-2">{project.name}</h2>
+       <div class="relative">
+        <Image
+         class="object-cover"
+         src={project.image}
+         alt={project.name}
+         width={300}
+         height={300}
+        />
+        <div class="absolute top-0 left-0 right-0 bottom-0 opacity-0 hover:opacity-100 hover:bg-black/90 transition-all duration-200">
+         <div class="flex flex-col justify-between text-center h-full items-center p-3">
+          <h3>This was built using:</h3>
+          <p class="text-red-300">{project.text}</p>
+          {project.site && project.code && (
+           <div class="flex gap-4 text-base">
+            <div>
+             <a
+              class="flex gap-1 cursor-pointer items-center hover:underline"
+              href={project.site}
+              target="_blank"
+              rel="noreferrer"
+             >
+              <p>View site</p>
+              <Icon name="ic:baseline-link" class="w-6 h-6">
+             </a>
+            </div>
+            <div>
+             <a
+              class="flex gap-1 cursor-pointer items-center hover:underline"
+              href={project.code}
+              target="_blank"
+              rel="noreferrer"
+             >
+              View code
+              <Icon name="radix-icons:github-logo" class="w-6 h-6" />
+             </a>
+            </div>
+           </div>
+          )}
+         </div>
+        </div>
+       </div>
+      </div>
+     ))}
+    </div>
