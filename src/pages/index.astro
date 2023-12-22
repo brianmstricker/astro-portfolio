@@ -11,8 +11,10 @@ const categories = [
  { name: "skills" },
  { name: "projects" },
  { name: "about" },
- { name: "contact" },
+ // { name: "contact" },
+ // {c.name === "contact" && <p>Contact</p>}
 ];
+// todo: refactor tabs to be css only
 ---
 
 <script>
@@ -72,7 +74,6 @@ const categories = [
       {c.name === "skills" && <Skills />}
       {c.name === "projects" && <Projects />}
       {c.name === "about" && <About />}
-      {c.name === "contact" && <p>Contact</p>}
      </div>
     ))
    }
