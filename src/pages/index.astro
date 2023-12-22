@@ -11,30 +11,10 @@ const categories = [
  { name: "skills" },
  { name: "projects" },
  { name: "about" },
- // { name: "contact" },
- // {c.name === "contact" && <p>Contact</p>}
 ];
-// todo: refactor tabs to be css only
+// maybe add contact section
 ---
 
-<script>
- const tabTitles = document.querySelectorAll(".tab-titles");
- tabTitles[0].classList.add("active");
- const tabContent = document.querySelectorAll(".tab-content");
- tabContent[0].classList.add("active");
- tabTitles.forEach((tab, i) => {
-  tab.addEventListener("click", () => {
-   tabTitles.forEach((tab) => {
-    tab.classList.remove("active");
-   });
-   tab.classList.add("active");
-   tabContent.forEach((tab) => {
-    tab.classList.remove("active");
-   });
-   tabContent[i].classList.add("active");
-  });
- });
-</script>
 <Layout title="Brian Stricker">
  <main class="w-full h-screen flex flex-col items-center justify-center">
   <div class="flex flex-col">
@@ -58,11 +38,24 @@ const categories = [
      </div>
     </div>
    </div>
+   {
+    categories.map((c) => (
+     <input
+      type="radio"
+      name="slider"
+      class="hidden"
+      id={c.name}
+      checked={c.name === "skills" ? true : false}
+     />
+    ))
+   }
    <ul class="my-4 sm:mt-6 flex gap-3 sm:gap-6 self-center items-center">
     {
      categories.map((c) => (
       <div class="group">
-       <li class="font-bold cursor-pointer tab-titles">{c.name}</li>
+       <label class="font-bold cursor-pointer tab-titles" for={c.name}>
+        {c.name}
+       </label>
        <div class="tab-title-underline bg-blue-400 h-[2px] w-0 group-hover:w-full transition-all duration-300" />
       </div>
      ))
@@ -70,7 +63,7 @@ const categories = [
    </ul>
    {
     categories.map((c) => (
-     <div class="tab-content hidden">
+     <div class={"tab-content hidden " + c.name}>
       {c.name === "skills" && <Skills />}
       {c.name === "projects" && <Projects />}
       {c.name === "about" && <About />}
@@ -81,10 +74,26 @@ const categories = [
  </main>
 </Layout>
 <style>
- .tab-titles.active + .tab-title-underline {
+ #skills:checked ~ ul .group .tab-titles[for="skills"] + .tab-title-underline {
   @apply bg-blue-400 h-[2px] w-full transition-all duration-200;
  }
- .tab-content.active {
+ #projects:checked
+  ~ ul
+  .group
+  .tab-titles[for="projects"]
+  + .tab-title-underline {
+  @apply bg-blue-400 h-[2px] w-full transition-all duration-200;
+ }
+ #about:checked ~ ul .group .tab-titles[for="about"] + .tab-title-underline {
+  @apply bg-blue-400 h-[2px] w-full transition-all duration-200;
+ }
+ #skills:checked ~ .skills {
+  @apply block h-[400px] max-w-[600px] mx-auto transition-all duration-200;
+ }
+ #projects:checked ~ .projects {
+  @apply block h-[400px] max-w-[600px] mx-auto transition-all duration-200;
+ }
+ #about:checked ~ .about {
   @apply block h-[400px] max-w-[600px] mx-auto transition-all duration-200;
  }
 </style>
