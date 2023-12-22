@@ -42,7 +42,7 @@ const categories = [
     categories.map((c) => (
      <input
       type="radio"
-      name="slider"
+      name="categories"
       class="hidden"
       id={c.name}
       checked={c.name === "skills" ? true : false}
@@ -52,12 +52,12 @@ const categories = [
    <ul class="my-4 sm:mt-6 flex gap-3 sm:gap-6 self-center items-center">
     {
      categories.map((c) => (
-      <div class="group">
+      <li class="group">
        <label class="font-bold cursor-pointer tab-titles" for={c.name}>
         {c.name}
        </label>
        <div class="tab-title-underline bg-blue-400 h-[2px] w-0 group-hover:w-full transition-all duration-300" />
-      </div>
+      </li>
      ))
     }
    </ul>
@@ -74,25 +74,17 @@ const categories = [
  </main>
 </Layout>
 <style>
- #skills:checked ~ ul .group .tab-titles[for="skills"] + .tab-title-underline {
-  @apply bg-blue-400 h-[2px] w-full transition-all duration-200;
- }
+ #skills:checked ~ ul .group .tab-titles[for="skills"] + .tab-title-underline,
  #projects:checked
   ~ ul
   .group
   .tab-titles[for="projects"]
-  + .tab-title-underline {
-  @apply bg-blue-400 h-[2px] w-full transition-all duration-200;
- }
+  + .tab-title-underline,
  #about:checked ~ ul .group .tab-titles[for="about"] + .tab-title-underline {
   @apply bg-blue-400 h-[2px] w-full transition-all duration-200;
  }
- #skills:checked ~ .skills {
-  @apply block h-[400px] max-w-[600px] mx-auto transition-all duration-200;
- }
- #projects:checked ~ .projects {
-  @apply block h-[400px] max-w-[600px] mx-auto transition-all duration-200;
- }
+ #skills:checked ~ .skills,
+ #projects:checked ~ .projects,
  #about:checked ~ .about {
   @apply block h-[400px] max-w-[600px] mx-auto transition-all duration-200;
  }
