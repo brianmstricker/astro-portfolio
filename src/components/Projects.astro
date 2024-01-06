@@ -2,6 +2,7 @@
 import icongen from "../assets/images/icon-generator-project.png";
 import blogimg from "../assets/images/myblog.png";
 import airbnbclone from "../assets/images/airbnb-clone.png";
+import chirp from "../assets/images/chirp.png";
 import Icon from "astro-icon";
 import { Image } from "astro:assets";
 
@@ -12,6 +13,11 @@ const projects = [
   text: "React, Next.js, Tailwind, Prisma, Typescript",
   site: "https://brian-airbnb-clone.vercel.app//",
   code: "https://github.com/brianmstricker/airbnb-clone",
+ },
+ {
+    name: "Chirp - Twitter Clone",
+    image: chirp,
+    text: "React, Next.js 14, Tailwind, Drizzle ORM, Typescript",
  },
  {
   name: "Fullstack Blog",
@@ -71,6 +77,8 @@ const projects = [
             </div>
            </div>
           )}
+          {!project.site && !project.code &&
+          <div class="text-sm">Work In Progress</div>}
          </div>
         </div>
        </div>
