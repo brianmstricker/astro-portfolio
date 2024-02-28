@@ -11,7 +11,7 @@ const projects = [
   name: "Airbnb Clone",
   image: airbnbclone,
   text: "React, Next.js, Tailwind, Prisma, Typescript",
-  site: "https://brian-airbnb-clone.vercel.app//",
+  site: "https://airbnb-clone-brianmstricker.vercel.app/",
   code: "https://github.com/brianmstricker/airbnb-clone",
  },
  {
@@ -40,13 +40,15 @@ const projects = [
       <div class="flex flex-col items-center px-4 sm:px-0 w-[90%] h-[90%] mx-auto sm:w-auto sm:h-auto">
        <h2 class="pb-2">{project.name}</h2>
        <div class="relative">
-        <Image
-         class="object-cover max-w-[300px] max-h-[200px]"
-         src={project.image}
-         alt={project.name}
-         width={300}
-         height={300}
-        />
+        <div class="max-w-[300px] max-h-[200px]">
+         <Image
+          class="object-cover max-w-[300px] max-h-[200px]"
+          src={project.image}
+          alt={project.name}
+          width={300}
+          height={200}
+         />
+        </div>
         <div class="absolute top-0 left-0 right-0 bottom-0 opacity-0 hover:opacity-100 hover:bg-black/90 transition-all duration-200">
          <div class="flex flex-col justify-between text-center h-full items-center p-3">
           <h3>This was built using:</h3>
